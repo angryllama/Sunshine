@@ -51,17 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 "Sun 6/29 - Sunny - 20/7"
         };
         List<String> weekForecast = new ArrayList<String>(Arrays.asList(data));
-
-        ArrayAdapter<String> mForecastAdapter = new ArrayAdapter<String>
-                (
-                // init context, layout, text, data
-                getActivity(),R.layout.list_item_forecast,R.id.list_item_forecast_textview,weekForecast
-                );
-
-
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         return rootView;
     }
-
-
 }
