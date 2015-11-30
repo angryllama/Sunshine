@@ -55,7 +55,7 @@ public class ForecastFragment extends Fragment {
         if (id == R.id.action_refresh) {
             FetchWeatherTask weatherTask = new FetchWeatherTask();
             weatherTask.execute("6173331");
-            Log.v("Sunshine", weatherTask.execute("6173331").toString());
+            //Log.v("Sunshine", weatherTask.execute("6173331").toString());
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -145,9 +145,9 @@ public class ForecastFragment extends Fragment {
             //temp
             final String OWM_TEMPERATURE = "main";
             //max
-            final String OWM_MAX = "max_temp";
+            final String OWM_MAX = "temp_max";
             //min
-            final String OWM_MIN = "min_temp";
+            final String OWM_MIN = "temp_min";
             final String OWM_DESCRIPTION = "main";
 
             JSONObject forecastJson = new JSONObject(forecastJsonStr);
@@ -172,7 +172,7 @@ public class ForecastFragment extends Fragment {
             dayTime = new Time();
 
             String[] resultStrs = new String[numDays];
-            for (int i = 0; i < weatherArray.length(); i++) {
+            for (int i = 0; i < numDays; i++) {
                 // For now, using the format "Day, description, hi/low"
                 String day;
                 String description;
@@ -191,7 +191,8 @@ public class ForecastFragment extends Fragment {
 
                 // description is in a child array called "weather", which is 1 element long.
                 //JSONObject weatherObject = dayForecast.getJSONArray(OWM_WEATHER).getJSONObject(0);
-                JSONObject weatherObject = dayForecast.getJSONObject(OWM_WEATHER);
+                JSONArray weatherObjectArray = dayForecast.getJSONArray(OWM_WEATHER);
+                JSONObject weatherObject = weatherObjectArray.getJSONObject(0);
                 description = weatherObject.getString(OWM_DESCRIPTION);
 
                 // Temperatures are in a child object called "temp".  Try not to name variables
@@ -207,6 +208,7 @@ public class ForecastFragment extends Fragment {
             for (String s : resultStrs) {
                 Log.v(LOG_TAG, "Forecast entry: " + s);
             }
+            //Log.v(LOG_TAG, "Forecast entry: " + resultStrs);
             return resultStrs;
 
         }
@@ -299,8 +301,15 @@ public class ForecastFragment extends Fragment {
                 }
             }
 
-            return getWeatherDataFromJson(forecastJsonStr,5);
+            try {
+                return getWeatherDataFromJson(forecastJsonStr, 7);
+            } catch (JSONException e) {
+                Log.e(LOG_TAG, e.getMessage(), e);
+                e.printStackTrace();
+            }
 
+            //error will return null
+            return null;
         }
 
 
