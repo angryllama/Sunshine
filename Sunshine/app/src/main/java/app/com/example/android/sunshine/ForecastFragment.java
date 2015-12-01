@@ -12,8 +12,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,6 +65,7 @@ public class ForecastFragment extends Fragment {
 
     ArrayAdapter<String> mForecastAdapter;
     ListView listView;
+    List<String> weekForecast;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,7 +84,7 @@ public class ForecastFragment extends Fragment {
                 "Sun 6/29 - Sunny - 20/7"
         };
 
-        List<String> weekForecast = new ArrayList<String>(Arrays.asList(data));
+        weekForecast = new ArrayList<String>(Arrays.asList(data));
 
         // Now that we have some dummy forecast data, create an ArrayAdapter.
         // The ArrayAdapter will take data from a source (like our dummy forecast) and
@@ -95,6 +98,12 @@ public class ForecastFragment extends Fragment {
 
         listView = (ListView) rootView.findViewById(R.id.listwiew_forecast);
         listView.setAdapter(mForecastAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getContext(), mForecastAdapter.getItem(position), Toast.LENGTH_LONG).show();
+            }
+        });
 
         return rootView;
     }
@@ -312,7 +321,29 @@ public class ForecastFragment extends Fragment {
             return null;
         }
 
+        @Override
+        protected void onPostExecute(String[] strings) {
+
+            // If we get JSON data and successfully parse it, then update the adapter
+            // otherwise do nothing.
+            if (strings != null) ;
+            {
+                // Sets weekForecast to result of JSON parsing
+                weekForecast = new ArrayList<String>(Arrays.asList(strings));
+
+                //Log to check strings passed correctly, it is, yay!
+                //for (String s : strings) {
+                //    Log.v(LOG_TAG, "Forecast entry: " + s);
+                //}
+
+                // populates mForecast adapter with JSON data
+                mForecastAdapter.clear();
+                // this is what triggers list view to update
+                // addAll is for honeycomb and above
+                mForecastAdapter.addAll(strings);
+                //super.onPostExecute(strings);
+            }
+        }
 
     }
-
 }
