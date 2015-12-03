@@ -1,5 +1,6 @@
 package app.com.example.android.sunshine;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
@@ -98,10 +99,21 @@ public class ForecastFragment extends Fragment {
 
         listView = (ListView) rootView.findViewById(R.id.listwiew_forecast);
         listView.setAdapter(mForecastAdapter);
+
+        // Enables click listener on the listView so we can perform actions when we click on an item
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), mForecastAdapter.getItem(position), Toast.LENGTH_LONG).show();
+                // Create a toast with the forecast data when we click on an item/day in listView
+                //Toast.makeText(getContext(), mForecastAdapter.getItem(position), Toast.LENGTH_LONG).show();
+
+                // Create string with forecast data
+                String detailStringForecast = mForecastAdapter.getItem(position);
+
+                // Create an intent to launch the detail activity when we click on an item in listView
+                Intent detailView = new Intent(getActivity(), DetailActivity.class);
+                detailView.putExtra("stringForecast", detailStringForecast);
+                startActivity(detailView);
             }
         });
 
