@@ -1,8 +1,27 @@
 <resources>
+    <!-- -->
     <string name="app_name">Sunshine</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="refresh">Refresh</string>
     <string name="today" />
-    <string name="title_activity_detail">DetailActivity</string>
+
+    <!-- Menu Items -->
+    <!-- String name for Settings menu item -->
+    <string name="action_settings">Settings</string>
+    <!-- String name for Refresh menu item -->
+    <string name="refresh">Refresh</string>
+
+    <!-- Activity Titles -->
+    <!-- Activity Title for Detailed Forecast Screen-->
+    <string name="title_activity_detail">Detail Forecast</string>
+    <!-- Activity Title for Settings Screen-->
+    <string name="settings_activity">Settings</string>
+
+    <!-- Settings Menu Strings -->
+    <!-- Location Label  -->
+    <string name="pref_location_title">Location</string>
+    <!-- Location Key -->
+    <string name="pref_location_key" translatable="false">location</string>
+    <!-- Default City Code -->
+    <string name="pref_default_city" translatable="fale">6173331</string>
+
 </resources>

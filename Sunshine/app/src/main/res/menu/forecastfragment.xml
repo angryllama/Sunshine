@@ -1,7 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".ForecastFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ForecastFragment">
     <!-- Adds Menu "Refresh" Menu item in Forecast Fragment -->
-    <item android:id="@+id/action_refresh" android:title="@string/refresh"
-        android:orderInCategory="101" app:showAsAction="never" />
+    <item
+        android:id="@+id/action_refresh"
+        android:orderInCategory="101"
+        android:title="@string/refresh"
+        app:showAsAction="never" />
 </menu>

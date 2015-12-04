@@ -52,15 +52,19 @@ public class ForecastFragment extends Fragment {
         inflater.inflate(R.menu.forecastfragment, menu);
     }
 
+    // Menu section to allow picking options from action bar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+
+        // If user chooses refresh - run FetchWeatherTask
         if (id == R.id.action_refresh) {
             FetchWeatherTask weatherTask = new FetchWeatherTask();
             weatherTask.execute("6173331");
             //Log.v("Sunshine", weatherTask.execute("6173331").toString());
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 

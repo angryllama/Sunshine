@@ -1,7 +1,9 @@
 package app.com.example.android.sunshine;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,7 +38,12 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        // Allows user to select settings activity
         if (id == R.id.action_settings) {
+            // Create an intent to launch the settings activity when we click on an item in menu
+            Intent settingsView = new Intent(this, SettingsActivity.class);
+            startActivity(settingsView);
+            Log.v("Sunshine", "settings");
             return true;
         }
 
