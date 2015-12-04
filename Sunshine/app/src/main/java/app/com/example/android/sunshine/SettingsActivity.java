@@ -26,7 +26,7 @@ public class SettingsActivity extends PreferenceActivity
         // TODO: Add preferences from XML
 
         addPreferencesFromResource(R.xml.pref_general);
-        
+
         // For all preferences, attach an OnPreferenceChangeListener so the UI summary can be
         // updated when the preference changes.
         // TODO: Add preferences
